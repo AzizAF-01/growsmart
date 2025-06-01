@@ -129,7 +129,6 @@ class App {
       
       this.#content.innerHTML = await page.render();
       await page.afterRender();
-      document.body.innerHTML = ''; 
       document.body.appendChild(this.#content);
       document.body.classList.remove('flex', 'min-h-screen');
     }
