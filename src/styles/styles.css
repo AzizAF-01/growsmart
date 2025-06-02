@@ -11,6 +11,24 @@ body {
   font-family: 'Poppins', sans-serif;
 }
 
+.gradient-bg {
+  background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+}
+
+.suggestion-card {
+  transition: all 0.3s ease;
+}
+
+.suggestion-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+.food-image {
+  border-radius: 20px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
 /* .container {
   padding-inline: 32px;
   margin-inline: auto;
@@ -105,6 +123,7 @@ header {
     padding-top: 150px;
   }
 }
+
 /* Write your styles more here */
 
 /* @media screen and (width > 1000px) {

@@ -4,6 +4,7 @@ const ENDPOINTS = {
   BASE: CONFIG.BASE_URL,
   LOGIN: `${CONFIG.BASE_URL}/api/auth/login`,
   REGISTER: `${CONFIG.BASE_URL}/api/auth/register`,
+  PREDICT: `${CONFIG.BASE_URL}/api/predict`,
 };
 
 export async function login({ email, password }) {
@@ -40,6 +41,32 @@ export async function register({ name, email, password }) {
     if (!response.ok) {
       const error = await response.json();
       throw new Error(error.message || 'Registrasi gagal');
+    }
+
+    return await response.json();
+  } catch (error) {
+    throw error;
+  }
+}
+
+export async function predictStuntingGuest({ gender, age, height, weight }) {
+  try {
+    const response = await fetch(ENDPOINTS.PREDICT, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        gender,
+        age,
+        height,
+        weight,
+      }),
+    });
+
+    if (!response.ok) {
+      const error = await response.json();
+      throw new Error(error.message || 'Prediksi gagal');
     }
 
     return await response.json();
