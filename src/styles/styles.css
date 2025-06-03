@@ -1,0 +1,240 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+}
+
+.gradient-bg {
+  background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+}
+
+.suggestion-card {
+  transition: all 0.3s ease;
+}
+
+.suggestion-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+.food-image {
+  border-radius: 20px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+/* .container {
+  padding-inline: 32px;
+  margin-inline: auto;
+  max-width: 1300px;
+} */
+
+header {
+  background-color: lightskyblue;
+}
+
+/* .main-header {
+  min-height: 90px;
+  padding-block: 20px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 30px;
+} */
+
+/* .brand-name {
+  font-size: 1.125rem;
+  font-weight: bold;
+  text-decoration: none;
+  color: #333;
+}
+
+.navigation-drawer {
+  min-height: 100vh;
+  width: 200px;
+  padding: 20px 10px;
+  background-color: #fff;
+
+  position: fixed;
+  inset-block-start: 0;
+  inset-inline-start: 0;
+
+  box-shadow: 0 0 4px 2px #00000033;
+  transform: translateX(-100%);
+  transition: transform 350ms;
+
+  z-index: 9999;
+}
+
+.navigation-drawer.open {
+  transform: translateX(0);
+}
+
+.drawer-button {
+  padding: 8px;
+  border: 0;
+  border-radius: 4px;
+
+  display: inline-block;
+  background-color: transparent;
+
+  font-weight: bold;
+  font-size: 28px;
+  color: #141e16;
+
+  cursor: pointer;
+}
+
+.nav-list {
+  list-style: none;
+
+  display: flex;
+  flex-direction: column;
+  gap: 10px 20px;
+}
+
+.nav-list li a {
+  padding: 6px 10px;
+
+  display: block;
+
+  color: #333;
+  text-decoration: none;
+}
+
+.nav-list li a:hover {
+  text-decoration: underline;
+} */
+
+/* MAIN */
+/* .main-content {
+  padding-block: 20px;
+} */
+
+@media (max-width: 768px) {
+  .main-content {
+    padding-top: 150px;
+  }
+}
+
+/* Write your styles more here */
+
+/* @media screen and (width > 1000px) {
+  .navigation-drawer {
+    min-height: auto;
+    width: auto;
+    padding: 0;
+    background-color: transparent;
+
+    flex-direction: row;
+    justify-content: space-between;
+
+    position: static;
+    box-shadow: none;
+    transform: translateX(0);
+  }
+
+  .nav-list {
+    flex-direction: row;
+  }
+
+  .nav-list li a {
+    display: inline-block;
+  }
+
+  .drawer-button {
+    display: none;
+  }
+} */
+
+/* Smaller thumb variant */
+.small-thumb-range {
+  -webkit-appearance: none;
+  appearance: none;
+  background: #5ACF59;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.small-thumb-range::-webkit-slider-track {
+  background: #5ACF59;
+  height: 12px;
+  border-radius: 6px;
+}
+
+.small-thumb-range::-moz-range-track {
+  background: #5ACF59;
+  height: 12px;
+  border-radius: 6px;
+  border: none;
+}
+
+.small-thumb-range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 32px;
+  height: 32px;
+  background: white;
+  border: 3px solid #00A63E;
+  border-radius: 50%;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+}
+
+.small-thumb-range::-moz-range-thumb {
+  width: 32px;
+  height: 32px;
+  background: white;
+  border: 3px solid #00A63E;
+  border-radius: 50%;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+.small-thumb-range:focus {
+  outline: none;
+}
+
+.small-thumb-range:focus::-webkit-slider-thumb {
+  box-shadow: 0 0 0 3px rgba(0, 166, 62, 0.2), 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.small-thumb-range:focus::-moz-range-thumb {
+  box-shadow: 0 0 0 3px rgba(0, 166, 62, 0.2), 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.notification {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background-color: #48bb78;
+  /* Hijau */
+  color: white;
+  padding: 12px 20px;
+  border-radius: 8px;
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  z-index: 9999;
+  font-weight: 500;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.notification.error {
+  background-color: #f56565;
+  /* Merah */
+}
+
+.notification.show {
+  opacity: 1;
+  transform: translateY(0);
+}
