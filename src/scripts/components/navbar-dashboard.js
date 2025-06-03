@@ -5,6 +5,8 @@ class NavbarDashboard extends HTMLElement {
     }
 
     render() {
+        const userData = JSON.parse(sessionStorage.getItem('user') || '{}');
+        const userName = userData.name || 'Pengguna';
         this.innerHTML = `
         <header class="fixed top-0 left-0 right-0 w-full bg-white shadow-md z-40">
             <div class="max-w-screen mx-auto px-4">
@@ -15,7 +17,7 @@ class NavbarDashboard extends HTMLElement {
                         </button>
                     </div>
                     <div class="flex items-center space-x-2">
-                        <span class="text-gray-800 font-medium">Nabila</span>
+                        <span class="text-gray-800 font-medium">${userName}</span>
                         <div class="w-8 h-8 bg-green-600 rounded-full"></div>
                     </div>
                 </nav>

@@ -82,10 +82,14 @@ export default class LoginView {
         const user = response.session.user;
 
         const name = user.user_metadata ?.name || 'Unknown';
+        const id = user.id || 'Unknown';
 
         sessionStorage.setItem('token', accessToken);
         sessionStorage.setItem('user', JSON.stringify({
             name
+        }));
+        sessionStorage.setItem('id', JSON.stringify({
+            id
         }));
 
         window.location.href = '#/dashboard';
