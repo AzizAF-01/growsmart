@@ -18,75 +18,94 @@ export default class ProfileView {
   }
 
   async render() {
-    const name =
-      this.user?.user_metadata?.name || this.user?.email?.split("@")[0] || "";
-    const email = this.user?.email || "";
-
     return `
-    <div id="main-content" class="bg-[#F4FFEF] min-h-screen pt-24 pb-10 px-4 transition-all duration-300 ease-in-out">
-  <div class="bg-white p-4 m-4">
-    <p class="text-xl font-semibold mb-4">Profil Pengguna</p>
-  </div>
+    <div id="main-content" class="bg-white h-full pt-24 pb-10 px-4 transition-all duration-300 ease-in-out">
+      <div class="bg-gray-200 p-4 rounded-md m-4">
+        <p class="text-xl font-semibold">Profil Pengguna</p>
+      </div>
 
-  <section class="bg-white min-h-screen flex flex-col items-center justify-center md:p-6">
-    <!-- Data Profil -->
-    <div class="mb-4 w-full max-w-md">
-      <label class="block text-sm font-medium mb-1">Nama Lengkap</label>
-      <p class="text-gray-700 bg-gray-100 py-2 px-3 rounded">${name}</p>
+      <section class="bg-gray-200 flex flex-col rounded-md items-center justify-center md:p-6 m-4 max-sm:p-4">
+        <!-- Data Profil -->
+        <div class="mb-4 w-full max-w-md">
+          <label class="block text-sm font-medium mb-1">Nama Lengkap</label>
+          <p id="userName" class="text-gray-700 bg-white py-2 px-3 rounded"></p>
+        </div>
+
+        <div class="mb-6 w-full max-w-md">
+          <label class="block text-sm font-medium mb-1">Email</label>
+          <p id="userEmail" class="text-gray-700 bg-white py-2 px-3 rounded"></p>
+        </div>
+
+        <!-- Tombol Aksi -->
+        <div class="flex flex-col space-y-3 w-full max-w-md">
+          <button id="editBtn" class="w-full py-2 bg-green-600 text-white font-semibold rounded-lg">Edit Profile</button>
+          <button id="changePasswordBtn" class="w-full py-2 border border-green-600 text-black font-semibold rounded-lg">Ubah Password</button>
+        </div>
+
+        <!-- Form Edit Profil -->
+        <form id="editProfileForm" class="mt-6 hidden space-y-4 w-full max-w-md">
+          <div>
+            <label class="block text-sm font-medium mb-1">Nama</label>
+            <input type="text" id="editName" class="w-full border px-3 py-2 rounded bg-gray-100" />
+          </div>
+
+          <div>
+            <label class="block text-sm font-medium mb-1">Email</label>
+            <input type="email" id="editEmail" class="w-full border px-3 py-2 rounded bg-gray-100"/>
+          </div>
+
+          <div class="flex justify-center space-x-4">
+            <button type="submit" class="px-6 py-2 bg-green-600 text-white font-semibold rounded">Submit</button>
+            <button type="button" id="cancelEditBtn" class="px-6 py-2 bg-gray-300 text-black rounded">Batal</button>
+          </div>
+        </form>
+
+        <!-- Form Ubah Password -->
+        <form id="changePasswordForm" class="mt-6 hidden space-y-4 w-full max-w-md">
+          <div>
+            <label class="block text-sm font-medium mb-1">Password Baru</label>
+            <input type="password" id="newPassword" class="w-full border px-3 py-2 rounded bg-gray-100" placeholder="Masukkan password baru" />
+          </div>
+
+          <div class="flex justify-center space-x-4">
+            <button type="submit" class="px-6 py-2 bg-green-600 text-white font-semibold rounded">Ubah Password</button>
+            <button type="button" id="cancelPasswordBtn" class="px-6 py-2 bg-gray-300 text-black rounded">Batal</button>
+          </div>
+        </form>
+      </section>
     </div>
-
-    <div class="mb-6 w-full max-w-md">
-      <label class="block text-sm font-medium mb-1">Email</label>
-      <p class="text-gray-700 bg-gray-100 py-2 px-3 rounded">${email}</p>
-    </div>
-
-    <!-- Tombol Aksi -->
-    <div class="flex flex-col space-y-3 w-full max-w-md">
-      <button id="editBtn" class="w-full py-2 bg-green-600 text-white font-semibold rounded-lg">Edit Profile</button>
-      <button id="changePasswordBtn" class="w-full py-2 border border-green-600 text-black font-semibold rounded-lg">Ubah Password</button>
-    </div>
-
-    <!-- Form Edit Profil -->
-    <form id="editProfileForm" class="mt-6 hidden space-y-4 w-full max-w-md">
-      <div>
-        <label class="block text-sm font-medium mb-1">Nama</label>
-        <input type="text" id="editName" class="w-full border px-3 py-2 rounded bg-gray-100" value="${name}" />
-      </div>
-
-      <div>
-        <label class="block text-sm font-medium mb-1">Email</label>
-        <input type="email" id="editEmail" class="w-full border px-3 py-2 rounded bg-gray-100" value="${email}" />
-      </div>
-
-      <div class="flex justify-center space-x-4">
-        <button type="submit" class="px-6 py-2 bg-green-600 text-white font-semibold rounded">Submit</button>
-        <button type="button" id="cancelEditBtn" class="px-6 py-2 bg-gray-300 text-black rounded">Batal</button>
-      </div>
-    </form>
-
-    <!-- Form Ubah Password -->
-    <form id="changePasswordForm" class="mt-6 hidden space-y-4 w-full max-w-md">
-      <div>
-        <label class="block text-sm font-medium mb-1">Password Baru</label>
-        <input type="password" id="newPassword" class="w-full border px-3 py-2 rounded bg-gray-100" placeholder="Masukkan password baru" />
-      </div>
-
-      <div class="flex justify-center space-x-4">
-        <button type="submit" class="px-6 py-2 bg-green-600 text-white font-semibold rounded">Ubah Password</button>
-        <button type="button" id="cancelPasswordBtn" class="px-6 py-2 bg-gray-300 text-black rounded">Batal</button>
-      </div>
-    </form>
-  </section>
-</div>
 
     `;
   }
 
   async afterRender() {
     if (this.token && !this.user) {
-      await this.presenter.loadProfile(this.token);
-    }
-    this.bindEvents();
+        await this.presenter.loadProfile(this.token); // Setelah ini this.user akan terisi
+      }
+
+      // Render data user (kalau sudah ada)
+      if (this.user) {
+        this.renderUserData();
+      }
+
+      this.bindEvents();
+  }
+
+  renderUserData() {
+    const name = this.user?.user_metadata?.name || this.user?.email?.split("@")[0] || "";
+    const email = this.user?.email || "";
+
+    const nameEl = document.getElementById("userName");
+    const emailEl = document.getElementById("userEmail");
+
+    if (nameEl) nameEl.textContent = name;
+    if (emailEl) emailEl.textContent = email;
+
+    // Update value input form juga kalau mau
+    const nameInput = document.getElementById("editName");
+    const emailInput = document.getElementById("editEmail");
+    if (nameInput) nameInput.value = name;
+    if (emailInput) emailInput.value = email;
   }
 
   bindEvents() {

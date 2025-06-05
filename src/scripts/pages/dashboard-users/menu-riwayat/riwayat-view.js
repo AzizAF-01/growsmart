@@ -7,11 +7,11 @@ export default class RiwayatView {
 
   async render() {
     return `
-      <div id="main-content" class="bg-[#F4FFEF] min-h-screen pt-24 pb-10 px-4 transition-all duration-300 ease-in-out">
-        <div class="bg-white p-4 m-4">
+      <div id="main-content" class="bg-white min-h-full pt-24 pb-10 px-4 transition-all duration-300 ease-in-out">
+        <div class="bg-gray-200 rounded-md p-4 m-4">
           <p class="text-2xl font-bold">Riwayat</p>
         </div>
-        <section class="p-4 m-4 bg-white">
+        <section class="p-6 rounded-md m-4 min-h-fit bg-gray-200">
           <div class="overflow-x-auto">
             <table class="w-full text-sm border-collapse">
               <thead class="bg-green-600 text-white">
@@ -25,7 +25,7 @@ export default class RiwayatView {
                   <th class="p-2 text-left">Aksi</th>
                 </tr>
               </thead>
-              <tbody id="history-table-body" class="text-gray-700"></tbody>
+              <tbody id="history-table-body" class="text-gray-700 bg-white"></tbody>
             </table>
           </div>
         </section>

@@ -78,19 +78,20 @@ export default class LoginView {
     }
 
     onLoginSuccess(response) {
-        const accessToken = response.session.access_token;
-        const user = response.session.user;
+        const session = response.session;
+        const accessToken = session.access_token;
+        const user = session.user;
 
-        const name = user.user_metadata ?.name || 'Unknown';
-        const id = user.id || 'Unknown';
+        const name = user?.user_metadata?.name || 'Unknown';
+        const id = user?.id || 'Unknown';
+        const email = user?.user_metadata?.email || 'Unknown';
 
         sessionStorage.setItem('token', accessToken);
-        sessionStorage.setItem('user', JSON.stringify({
-            name
-        }));
-        sessionStorage.setItem('id', JSON.stringify({
-            id
-        }));
+        sessionStorage.setItem('user', JSON.stringify({ name }));
+        sessionStorage.setItem('id', JSON.stringify({ id }));
+        sessionStorage.setItem('email', JSON.stringify({ email }));
+        sessionStorage.setItem('expires_in', session.expires_in.toString());
+        sessionStorage.setItem('expires_at', session.expires_at.toString());
 
         window.location.href = '#/dashboard';
         window.location.reload();

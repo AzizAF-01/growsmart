@@ -6,6 +6,31 @@ import '../scripts/components/sidebar-dashboard';
 import '../scripts/components/navbar-dashboard';
 
 document.addEventListener('DOMContentLoaded', async () => {
+
+  const token = sessionStorage.getItem('token');
+  const expiresAt = sessionStorage.getItem('expires_at');
+  const now = Date.now(); // dalam milidetik
+
+  if (token && expiresAt && now >= parseInt(expiresAt) * 1000) {
+    sessionStorage.removeItem('token');
+    sessionStorage.removeItem('expires_at');
+    alert('Sesi Anda telah berakhir. Silakan login kembali.');
+    window.location.hash = '/login';
+    window.location.reload();
+    return;
+  }
+
+  if (token && expiresAt) {
+    const remainingTime = parseInt(expiresAt) * 1000 - now;
+    setTimeout(() => {
+      sessionStorage.removeItem('token');
+      sessionStorage.removeItem('expires_at');
+      alert('Sesi Anda telah berakhir. Silakan login kembali.');
+      window.location.hash = '/login';
+      window.location.reload();
+    }, remainingTime);
+  }
+
   const isLoggedIn = !!sessionStorage.getItem('token');
 
   const existingNavbar = document.querySelector('nav-bar') || document.querySelector('sidebar-dashboard');
