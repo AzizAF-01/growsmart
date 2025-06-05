@@ -90,7 +90,7 @@ export default class CekStuntingView {
             </div>
         </section>
         <div id="prediction-result" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
-            <div class="bg-white rounded-xl shadow-lg overflow-y-auto max-h-[90vh] w-full max-w-5xl p-6 relative">
+            <div class="custom-scroll bg-white rounded-xl shadow-lg overflow-y-auto max-h-[90vh] w-full max-w-5xl p-6 m-4 relative">
                 <button id="close-popup" class="absolute top-4 right-4 text-gray-500 hover:text-black text-xl">&times;</button>
                 <!-- Isi hasil prediksi akan dimasukkan di sini -->
                 <div id="prediction-content"></div>

@@ -161,7 +161,7 @@ export async function predictStuntingUser({ token, gender, age, height, weight, 
       throw new Error(error.error || "Prediksi gagal");
     }
 
-    return await response.json(); // hasil prediksi yang tersimpan
+    return await response.json(); 
   } catch (error) {
     throw error;
   }
@@ -240,7 +240,6 @@ export async function deletePredictionHistoryById(id, token) {
 export async function predictStuntingWithAuth({ child_id = null, gender, age, height, weight }) {
   try {
     const token = sessionStorage.getItem('token');
-    console.log('Token:', token);
 
     if (!token) {
       throw new Error('Token tidak ditemukan. Silakan login terlebih dahulu.');
@@ -259,7 +258,7 @@ export async function predictStuntingWithAuth({ child_id = null, gender, age, he
       payload.child_id = child_id;
     }
 
-    const response = await fetch(ENDPOINTS.PREDICTIONS, {
+    const response = await fetch(ENDPOINTS.PREDICTION, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
