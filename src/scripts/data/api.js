@@ -91,7 +91,7 @@ export async function updateProfile({ id, token, email, password, data }) {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
+        Authorization: `${token}`,
       },
       body: JSON.stringify({
         ...(email && { email }),
@@ -129,6 +129,7 @@ export async function predictStuntingGuest({ gender, age, height, weight }) {
 
     if (!response.ok) {
       const error = await response.json();
+      console.log(error);
       throw new Error(error.error || "Prediksi gagal");
     }
 

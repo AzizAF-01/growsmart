@@ -226,7 +226,7 @@ export default class ProfileView {
   onUpdateProfileSuccess(updatedUser) {
     alert("✅ Profil berhasil diperbarui!");
     this.user = updatedUser;
-    sessionStorage.setItem("user", JSON.stringify(updatedUser));
+    // sessionStorage.setItem("user", JSON.stringify(updatedUser));
   }
 
   onUpdateProfileFailed(message) {

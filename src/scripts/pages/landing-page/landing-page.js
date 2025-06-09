@@ -83,7 +83,7 @@ export default class LandingPage {
         </section>
 
         <section class="bg-white py-16 md:py-24">
-            <div class="container mx-auto px-4">
+            <div class="container mx-auto px-4 md:px-24">
                 <div class="flex flex-col items-center justify-center mb-28">
                     <img src="/images/chatbot.png" alt="Growsmart Robot" class="w-32 h-32 md:w-32 md:h-32 object-contain mb-4">
                     <h2 class="text-2xl text-[#00A63E] md:text-3xl font-bold">Fitur Growsmart</h2>
@@ -231,7 +231,11 @@ export default class LandingPage {
         </section>
         <div id="prediction-result" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
         <div class="bg-white rounded-xl shadow-lg overflow-y-auto max-h-[90vh] w-full max-w-5xl p-6 relative">
-            <button id="close-popup" class="absolute top-4 right-4 text-gray-500 hover:text-black text-xl">&times;</button>
+            <button id="close-popup" class="absolute top-7 right-7 text-gray-500 bg-gray-300 rounded-md w-7 h-7 hover:text-black text-xl flex items-center justify-center">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" class="w-4 h-4 fill-current">
+                    <path d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z"/>
+                </svg>
+            </button>
             <!-- Isi hasil prediksi akan dimasukkan di sini -->
             <div id="prediction-content"></div>
         </div>
@@ -361,121 +365,131 @@ export default class LandingPage {
             status
         } = result;
 
+        const recommendations = {
+            'Severely Stunted': {
+                description: 'Sangat Terhambat',
+            },
+            'Stunted': {
+                description: 'Terhambat',
+            },
+            'Normal': {
+                description: 'Normal',
+            },
+            'Tall': {
+                description: 'Di Atas Rata-rata',
+            }
+        };
+
+        const statusDescription = recommendations[status]?.description || 'Status tidak diketahui';
+
         container.innerHTML = `
             <div class="gradient-bg text-white px-8 py-6 text-center">
-                <div class="inline-block bg-white bg-opacity-20 backdrop-blur-sm rounded-full px-6 py-2 mb-4">
-                    <span class="text-white font-medium">Status: ${status}</span>
-                </div>
-                <h1 class="text-3xl font-bold mb-2">Pertumbuhan Anak<br>Di Atas Rata-rata</h1>
-                <p class="text-white text-opacity-90 text-lg">Pastikan gizi seimbang dan monitor perkembangan untuk menjaga kesehatan optimal.</p>
-            </div>
-            
-            <!-- Main Content -->
-            <div class="p-8">
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
-                    <!-- Left Column - Information -->
-                    <div class="space-y-8">
-                        <!-- Confidence Level -->
+                 <h1 class="text-3xl font-bold mb-2">Hasil Pengecekan Pertumbuhan  Tinggi anak</h1>
+                 <div class="inline-block bg-white bg-opacity-20 backdrop-blur-sm rounded-full px-6 py-2 mb-4">
+                     <span class="text-white text-2xl font-semibold">${statusDescription}</span>
+                 </div>
+                 <p class="text-white text-opacity-90 text-lg">${nutrition_recommendation.description}</p>
+             </div>
+             
+             <!-- Main Content -->
+             <div class="p-8">
+                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+                     <!-- Left Column - Information -->
+                     <div class="space-y-8">
+
+                         <!-- Growth Information -->
+                         <div class="bg-gray-100 rounded-2xl p-6">
+                             <h2 class="text-xl font-bold text-gray-800 mb-4">Keterangan Pertumbuhan</h2>
+                             <div class="space-y-3 text-gray-700">
+                                 <div class="flex items-start">
+                                     <div class="w-2 h-2 bg-blue-500 rounded-full mt-2 mr-3 flex-shrink-0"></div>
+                                     <p>${additional_info.height_explanation}</p>
+                                 </div>
+                                 <div class="flex items-start">
+                                     <div class="w-2 h-2 bg-orange-500 rounded-full mt-2 mr-3 flex-shrink-0"></div>
+                                     <p>${additional_info.weight_explanation}</p>
+                                 </div>
+                                 <div class="flex items-start">
+                                     <div class="w-2 h-2 bg-green-500 rounded-full mt-2 mr-3 flex-shrink-0"></div>
+                                     <p>Tinggi Normal: ${additional_info.normal_height.toFixed(2)} cm</p>
+                                 </div>
+                                 <div class="flex items-start">
+                                     <div class="w-2 h-2 bg-purple-500 rounded-full mt-2 mr-3 flex-shrink-0"></div>
+                                     <p>Berat Normal: ${additional_info.normal_weight.toFixed(2)} kg</p>
+                                 </div>
+                             </div>
+                         </div>
+                         
+                         <!-- Nutrition Recommendations -->
+                         <div>
+                             <h2 class="text-xl font-bold text-gray-800 mb-4">Rekomendasi Gizi</h2>
+                             <div class="bg-blue-50 rounded-2xl p-6 mb-4">
+                                 <div class="grid grid-cols-1 gap-3 mb-4">
+                                     ${nutrition_recommendation.food.map(food => `
+                                     <div class="flex items-center bg-white rounded-lg p-3">
+                                         <span class="text-2xl mr-3">🥗</span>
+                                         <span class="text-gray-700">${food}</span>
+                                     </div>`).join('')}
+                                 </div>
+                             </div>
+                         </div>
+                     </div>
+                     
+                     <!-- Right Column - Image and Suggestions -->
+                     <div class="space-y-6">
                         <div class="text-center">
                             <div class="inline-block bg-blue-50 border border-blue-200 rounded-full px-6 py-3">
-                                <span class="text-blue-700 font-semibold">Tingkat Kepercayaan: ${confidence}%</span>
+                                <span class="text-blue-700 font-semibold">Tingkat Akurasi: ${confidence}%</span>
                             </div>
                         </div>
-                        
-                        <!-- Growth Information -->
-                        <div class="bg-gray-50 rounded-2xl p-6">
-                            <h2 class="text-xl font-bold text-gray-800 mb-4">Keterangan Pertumbuhan</h2>
-                            <div class="space-y-3 text-gray-700">
-                                <div class="flex items-start">
-                                    <div class="w-2 h-2 bg-blue-500 rounded-full mt-2 mr-3 flex-shrink-0"></div>
-                                    <p>${additional_info.height_explanation}</p>
-                                </div>
-                                <div class="flex items-start">
-                                    <div class="w-2 h-2 bg-orange-500 rounded-full mt-2 mr-3 flex-shrink-0"></div>
-                                    <p>${additional_info.weight_explanation}</p>
-                                </div>
-                                <div class="flex items-start">
-                                    <div class="w-2 h-2 bg-green-500 rounded-full mt-2 mr-3 flex-shrink-0"></div>
-                                    <p>Tinggi Normal: ${additional_info.normal_height.toFixed(2)} cm</p>
-                                </div>
-                                <div class="flex items-start">
-                                    <div class="w-2 h-2 bg-purple-500 rounded-full mt-2 mr-3 flex-shrink-0"></div>
-                                    <p>Berat Normal: ${additional_info.normal_weight.toFixed(2)} kg</p>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <!-- Nutrition Recommendations -->
-                        <div>
-                            <h2 class="text-xl font-bold text-gray-800 mb-4">Rekomendasi Gizi</h2>
-                            <div class="bg-blue-50 rounded-2xl p-6 mb-4">
-                                <p class="text-gray-700 mb-4">${nutrition_recommendation.description}</p>
-                                <div class="grid grid-cols-1 gap-3 mb-4">
-                                    ${nutrition_recommendation.food.map(food => `
-                                    <div class="flex items-center bg-white rounded-lg p-3">
-                                        <span class="text-2xl mr-3">🥗</span>
-                                        <span class="text-gray-700">${food}</span>
-                                    </div>`).join('')}
-                                </div>
-                                <div class="space-y-2 text-sm text-gray-600">
-                                    <p><strong>Frekuensi:</strong> ${nutrition_recommendation.frequency}</p>
-                                    <p><strong>Catatan:</strong> ${nutrition_recommendation.notes}</p>
-                                    <p><strong>Suplemen:</strong> ${nutrition_recommendation.supplements}</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Right Column - Image and Suggestions -->
-                    <div class="space-y-6">
-                        <!-- Food Bowl Image -->
-                        <div class="text-center">
-                            <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" 
-                                 alt="Healthy food bowl" 
-                                 class="food-image w-full max-w-md mx-auto object-cover h-64">
-                        </div>
-                        
-                        <!-- Suggestions -->
-                        <div class="space-y-4">
-                            <div class="suggestion-card bg-purple-50 border border-purple-100 rounded-2xl p-6">
-                                <div class="flex items-start">
-                                    <div class="w-8 h-8 bg-purple-200 rounded-full flex items-center justify-center mr-4 flex-shrink-0">
-                                        <span class="text-purple-700 font-bold text-sm">1</span>
-                                    </div>
-                                    <div>
-                                        <h3 class="font-semibold text-gray-800 mb-2">Suggestion 1</h3>
-                                        <p class="text-gray-600 text-sm">Berikan makanan bergizi seimbang seperti roti gandum, ikan tuna, dan kacang almond untuk mendukung pertumbuhan yang sehat.</p>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <div class="suggestion-card bg-yellow-50 border border-yellow-100 rounded-2xl p-6">
-                                <div class="flex items-start">
-                                    <div class="w-8 h-8 bg-yellow-200 rounded-full flex items-center justify-center mr-4 flex-shrink-0">
-                                        <span class="text-yellow-700 font-bold text-sm">2</span>
-                                    </div>
-                                    <div>
-                                        <h3 class="font-semibold text-gray-800 mb-2">Suggestion 2</h3>
-                                        <p class="text-gray-600 text-sm">Monitor BMI secara rutin untuk mencegah obesitas dan pastikan aktivitas fisik yang cukup sesuai dengan usianya.</p>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <div class="suggestion-card bg-blue-50 border border-blue-100 rounded-2xl p-6">
-                                <div class="flex items-start">
-                                    <div class="w-8 h-8 bg-blue-200 rounded-full flex items-center justify-center mr-4 flex-shrink-0">
-                                        <span class="text-blue-700 font-bold text-sm">3</span>
-                                    </div>
-                                    <div>
-                                        <h3 class="font-semibold text-gray-800 mb-2">Suggestion 3</h3>
-                                        <p class="text-gray-600 text-sm">Konsultasi rutin dengan dokter anak untuk memantau perkembangan dan mendapatkan panduan nutrisi yang tepat.</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+                         <!-- Food Bowl Image -->
+                         <div class="text-center">
+                             <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" 
+                                  alt="Healthy food bowl" 
+                                  class="food-image w-full max-w-md mx-auto object-cover h-64">
+                         </div>
+                         
+                         <!-- Suggestions -->
+                         <div class="space-y-4">
+                             <div class="suggestion-card bg-purple-50 border border-purple-100 rounded-2xl p-6">
+                                 <div class="flex items-start">
+                                     <div class="w-8 h-8 bg-purple-200 rounded-full flex items-center justify-center mr-4 flex-shrink-0">
+                                         <span class="text-purple-700 font-bold text-sm">1</span>
+                                     </div>
+                                     <div>
+                                         <h3 class="font-semibold text-gray-800 mb-2">Pola Makan</h3>
+                                         <p class="text-gray-600 text-sm">${nutrition_recommendation.frequency}</p>
+                                     </div>
+                                 </div>
+                             </div>
+                             
+                             <div class="suggestion-card bg-yellow-50 border border-yellow-100 rounded-2xl p-6">
+                                 <div class="flex items-start">
+                                     <div class="w-8 h-8 bg-yellow-200 rounded-full flex items-center justify-center mr-4 flex-shrink-0">
+                                         <span class="text-yellow-700 font-bold text-sm">2</span>
+                                     </div>
+                                     <div>
+                                         <h3 class="font-semibold text-gray-800 mb-2">Catatan</h3>
+                                         <p class="text-gray-600 text-sm">${nutrition_recommendation.notes}</p>
+                                     </div>
+                                 </div>
+                             </div>
+                             
+                             <div class="suggestion-card bg-blue-50 border border-blue-100 rounded-2xl p-6">
+                                 <div class="flex items-start">
+                                     <div class="w-8 h-8 bg-blue-200 rounded-full flex items-center justify-center mr-4 flex-shrink-0">
+                                         <span class="text-blue-700 font-bold text-sm">3</span>
+                                     </div>
+                                     <div>
+                                         <h3 class="font-semibold text-gray-800 mb-2">Suplemen</h3>
+                                         <p class="text-gray-600 text-sm">${nutrition_recommendation.supplements}</p>
+                                     </div>
+                                 </div>
+                             </div>
+                         </div>
+                     </div>
+                 </div>
+             </div>
         `;
 
         popup.classList.remove('hidden');
