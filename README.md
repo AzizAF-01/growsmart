@@ -44,7 +44,7 @@ Proyek ini adalah setup dasar untuk aplikasi web yang menggunakan webpack untuk 
   ```
   Script ini menggunakan [`http-server`](https://www.npmjs.com/package/http-server) untuk menyajikan konten dari direktori `dist`.
 
-## Project Structure
+## Struktur Project
 
 Proyek starter ini dirancang agar kode tetap modular dan terorganisir.
 
