@@ -1,13 +1,3 @@
-# App Starter Project with Webpack
-
-Proyek ini adalah setup dasar untuk aplikasi web yang menggunakan webpack untuk proses bundling, Babel untuk transpile JavaScript, serta mendukung proses build dan serving aplikasi.
-
-## Table of Contents
-
-- [Getting Started](#getting-started)
-- [Scripts](#scripts)
-- [Project Structure](#project-structure)
-
 ## Setup Project
 
 ### Prerequisites
@@ -17,9 +7,7 @@ Proyek ini adalah setup dasar untuk aplikasi web yang menggunakan webpack untuk 
 
 ### Installation
 
-1. Download starter project [di sini](https://raw.githubusercontent.com/dicodingacademy/a219-web-intermediate-labs/099-shared-files/starter-project-with-webpack.zip).
-2. Lakukan unzip file.
-3. Pasang seluruh dependencies dengan perintah berikut.
+1. Pasang seluruh dependencies dengan perintah berikut.
    ```shell
    npm install
    ```
@@ -46,23 +34,28 @@ Proyek ini adalah setup dasar untuk aplikasi web yang menggunakan webpack untuk 
 
 ## Struktur Project
 
-Proyek starter ini dirancang agar kode tetap modular dan terorganisir.
-
 ```text
-starter-project/
-├── dist/                   # Compiled files for production
-├── src/                    # Source project files
-│   ├── public/             # Public files
-│   ├── scripts/            # Source JavaScript files
-│   │   └── index.js        # Main JavaScript entry file
-│   ├── styles/             # Source CSS files
-│   │   └── styles.css      # Main CSS file
-│   └── index.html/         # Main HTML file
-├── package.json            # Project metadata and dependencies
-├── package-lock.json       # Project metadata and dependencies
-├── README.md               # Project documentation
-├── STUDENT.txt             # Student information
-├── webpack.common.js       # Webpack common configuration
-├── webpack.dev.js          # Webpack development configuration
-└── webpack.prod.js         # Webpack production configuration
+growsmart/
+├── dist/                   # File hasil build untuk produksi
+├── src/                    # Folder utama berisi source code proyek
+│   ├── public/             # File publik seperti gambar
+│   │   └── images/         # Gambar dan aset lainnya
+│   ├── scripts/            # File JavaScript utama
+│   │   ├── components/     # Komponen UI yang bisa digunakan ulang
+│   │   ├── data/           # Data statis atau dummy
+│   │   ├── pages/          # Halaman-halaman aplikasi
+│   │   ├── routes/         # Pengaturan rute halaman
+│   │   ├── utils/          # Fungsi bantu (utility)
+│   │   ├── index.js        # Entry point utama aplikasi
+│   │   └── config.js       # File konfigurasi aplikasi
+│   ├── styles/             # File CSS
+│   │   └── styles.css      # File CSS utama
+│   └── index.html          # File HTML utama aplikasi
+├── package.json            # Informasi dan dependensi proyek
+├── package-lock.json       # Versi terkunci dari semua dependensi
+├── README.md               # Dokumentasi proyek
+├── STUDENT.txt             # Informasi mahasiswa/pengembang
+├── webpack.common.js       # Konfigurasi umum Webpack
+├── webpack.dev.js          # Konfigurasi Webpack untuk development
+└── webpack.prod.js         # Konfigurasi Webpack untuk production
 ```
