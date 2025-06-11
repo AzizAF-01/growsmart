@@ -8,7 +8,7 @@ Proyek ini adalah setup dasar untuk aplikasi web yang menggunakan webpack untuk 
 - [Scripts](#scripts)
 - [Project Structure](#project-structure)
 
-## Getting Started
+## Setup Project
 
 ### Prerequisites
 
