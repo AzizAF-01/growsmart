@@ -59,3 +59,6 @@ growsmart/
 ├── webpack.dev.js          # Konfigurasi Webpack untuk development
 └── webpack.prod.js         # Konfigurasi Webpack untuk production
 ```
+
+## Hasil Tampilan 
+<img src="https://github.com/user-attachments/assets/7c78d4b0-7caa-4c40-8cb3-59dbe8608fa1" alt="Screenshot" width="600"/>
