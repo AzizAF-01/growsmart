@@ -62,3 +62,4 @@ growsmart/
 
 ## Hasil Tampilan 
 <img src="https://github.com/user-attachments/assets/7c78d4b0-7caa-4c40-8cb3-59dbe8608fa1" alt="Screenshot" width="600"/>
+<img src="https://github.com/user-attachments/assets/0e8db15a-b819-406b-beb6-da40efdb03ea" alt="Screenshot" width="600"/>
